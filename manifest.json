@@ -1,0 +1,28 @@
+{
+  "name": "LocalStorageHelper",
+  "description": "A helper to manage local storage, put and get data from local storage to localhost and other options",
+  "version": "1.0.4",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "offscreen",
+    "tabs",
+    "activeTab",
+    "notifications",
+    "cookies"
+  ],
+  "host_permissions": ["https://*/*", "http://*/", "<all_urls>"],
+  "icons": {
+    "128": "/images/logo.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "/images/logo.png"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+.tabBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: calc(var(--default-spacing) * 2);
+  padding: calc(var(--default-spacing) * 2);
+}
+
+.tabBar__link {
+  background-color: var(--bg-color-light);
+  min-width: 200px;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.tabBar__link:hover {
+  background-color: var(--cta-color);
+  color: var(--bg-color-light);
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.tabBar__link--active {
+  background-color: var(--text-color);
+  color: white;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.tabContent {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0 calc(var(--default-spacing) * 2);
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.tabContent--active {
+  display: flex;
+}
+
+.tabContent__table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 0 calc(var(--default-spacing) * 4);
+  table-layout: fixed;
+}
+
+.tabContent__tableHeaderRow {
+  padding: calc(var(--default-spacing)) 0;
+  overflow: hidden;
+  text-align: left;
+  padding-left: var(--default-spacing);
+}
+
+.tabContent td {
+  padding: calc(var(--default-spacing));
+  background: fffd98ff;
+}
+
+.tabContent tr {
+  overflow: hidden;
+}
+.tabContent tbody tr:nth-child(even) {
+  background-color: var(--warng-color);
+}
+
+.tabContent tbody tr:nth-child(odd) {
+  background-color: var(--text-color);
+  color: white;
+}
+
+.tabContent tbody tr:nth-child(odd) td {
+  color: white;
+}
+
+.tabContent__table tr {
+  background-color: var(--bg-color-light);
+  font-weight: bold;
+  padding: calc(var(--default-spacing) * 2);
+}
+
+.tabContent tr:nth-child(n + 1) {
+  max-height: 50px;
+}
+
+.tabContent tr td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
+.tabContent i {
+  color:  var(--cta-color);
+  text-decoration: none;
+  font-size: 18px;
+  padding: 0 4px;
+  transition: 0.5s ease all;
+}
+
+.tabContent a:hover i{
+  color: black;
+  cursor: pointer;
+}
+
+
+.tabContent div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4px;
+}
+

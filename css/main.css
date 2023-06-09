@@ -1,0 +1,24 @@
+:root {
+  --bg-color: #59c9a5ff;
+  --bg-color-light: #b9e3c6ff;
+  --text-color: #23395bff;
+  --cta-color: #d81e5bff;
+  --warng-color: #fffd98ff;
+  --default-font-size: 12px;
+  --default-spacing: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  border: none;
+  overflow-x: hidden;
+}
+
+.popup{
+    background-color: var(--bg-color);
+    width: 800px !important;
+    height: 400px;
+}
