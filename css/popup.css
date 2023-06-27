@@ -1,0 +1,24 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  padding: var(--default-spacing);
+  background-color: var(--text-color);
+  transform: translateY(-100px);
+  transition: 0.5s ease all;
+  position: absolute;
+  width: 100%;
+}
+
+.popup__message {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: var(--default-spacing);
+}
+
+.popup--show {
+  transform: translateY(0);
+}

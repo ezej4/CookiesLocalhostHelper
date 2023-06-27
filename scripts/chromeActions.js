@@ -10,7 +10,7 @@ async function getAllCookies() {
       pageCookies.forEach((cookie) => {
         cookies.push({
           origin: tab.url,
-          key: cookie.name,
+          name: cookie.name,
           value: cookie.value,
         });
       });
@@ -34,15 +34,30 @@ async function getPageCookies(pageUrl) {
   });
   return pageCookiesList;
 }
-async function putCookieInLocalStorage(cookie) {
+
+async function putCookieInLocalHost(cookie) {
   const { localHostPort } = await getAsyncStorageProp('configs');
   const localHostUrl = `http://localhost:${localHostPort}/`;
+  const TEN_YEARS_SECONDS = 60 * 60 * 24 * 365 * 10; // 10 years
+
   await chrome.cookies.set({
     url: localHostUrl,
     name: cookie.name,
     value: cookie.value,
+    expirationDate: Math.floor(Date.now() / 1000) + TEN_YEARS_SECONDS,
   });
 }
+
+async function deleteLocalHostCookie(cookie) {
+  const { localHostPort } = await getAsyncStorageProp('configs');
+  const localHostUrl = `http://localhost:${localHostPort}/`;
+  
+  await chrome.cookies.remove({
+    url: localHostUrl,
+    name: cookie.name,
+  });
+}
+
 
 // TODO DELETE THIS
 async function openLocalHost(port) {

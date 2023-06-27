@@ -3,7 +3,6 @@ const buildSavedCookiesActions = (item, index) => {
   const tableActions = tableActionsTemplate.content.cloneNode(true);
   tableActions.getElementById('saveCookie').remove();
 
-
   const actions = tableActions.querySelectorAll('a');
   actions.forEach((action) => {
     if (action.id === 'copyToClipboard') {
@@ -14,9 +13,27 @@ const buildSavedCookiesActions = (item, index) => {
 
     if (action.id === 'putInLocalHost') {
       action.addEventListener('click', async () => {
-        console.log('putInLocalHost');
-        await putCookieInLocalStorage(item);
-        await buildLocalHostCookies();
+        try {
+          await putCookieInLocalHost(item);
+          await buildLocalHostCookies();
+          showPopup('Done!');
+        } catch (error) {
+          console.log(error);
+          showPopup('Failed');
+        }
+      });
+    }
+
+    if (action.id === 'deleteKey') {
+      action.addEventListener('click', async () => {
+        try {
+          await deleteSavedCookie(index);
+          await buildSavedCookies();
+          showPopup('Cookie deleted');
+        } catch (error) {
+          console.log(error);
+          showPopup('Failed');
+        }
       });
     }
 
@@ -37,18 +54,41 @@ const buildSavedCookies = async () => {
 
   CONFIGS.savedCookies.forEach((cookie, index) => {
     const row = document.createElement('tr');
-    const saved_from = document.createElement('td');
+    const alias = document.createElement('td');
+    const aliasInput = document.createElement('input');
+
     const key = document.createElement('td');
     const value = document.createElement('td');
+    const valueInput = document.createElement('input');
     const created_at = document.createElement('td');
     const actions = document.createElement('td');
-    saved_from.innerText = cookie.saved_from;
+
+    aliasInput.value = cookie.alias;
     key.innerText = cookie.name;
-    value.innerText = cookie.value;
+    valueInput.value = cookie.value;
     created_at.innerText = cookie.created_at;
 
+    aliasInput.addEventListener('blur', ({ target }) => {
+      const newItem = {
+        ...cookie,
+        alias: target.value,
+      };
+      updateSavedCookie(newItem, index);
+    });
+
+    valueInput.addEventListener('blur', ({ target }) => {
+      const newItem = {
+        ...cookie,
+        value: target.value,
+      };
+      updateSavedCookie(newItem, index);
+    });
+
+    alias.appendChild(aliasInput);
+    value.appendChild(valueInput);
+
     actions.appendChild(buildSavedCookiesActions(cookie, index));
-    row.appendChild(saved_from);
+    row.appendChild(alias);
     row.appendChild(key);
     row.appendChild(value);
     row.appendChild(created_at);

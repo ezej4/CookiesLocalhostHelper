@@ -11,8 +11,27 @@ const buildAllCookiesActions = (item, index) => {
 
     if (action.id === 'saveCookie') {
       action.addEventListener('click', async () => {
-        await saveCookie(item);
-        await buildSavedCookies();
+        try {
+          await saveCookie(item);
+          await buildSavedCookies();
+          showPopup('Cookie saved');
+        } catch (error) {
+          console.log(error);
+          showPopup('Failed');
+        }
+      });
+    }
+
+    if (action.id === 'putInLocalHost') {
+      action.addEventListener('click', async () => {
+        try {
+          await putCookieInLocalHost(item);
+          await buildLocalHostCookies();
+          showPopup('Done!');
+        } catch (error) {
+          console.log(error);
+          showPopup('Failed');
+        }
       });
     }
 
@@ -31,7 +50,7 @@ const buildAllCookiesTable = async () => {
     const value = document.createElement('td');
     const actions = document.createElement('td');
     origin.innerText = item.origin;
-    key.innerText = item.key;
+    key.innerText = item.name;
     value.innerText = item.value;
     actions.appendChild(buildAllCookiesActions(item, index));
     row.appendChild(origin);

@@ -8,11 +8,13 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/tabs.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/popup.css" />
+
   </head>
 
-  <body class="popup" style="width: 400px">
+  <body class="content" style="width: 400px">
     <section class="section">
       <!-- Tab links -->
       <div class="tabBar">
@@ -20,10 +22,10 @@
           class="tabBar__link tabBar__link--active"
           id="tabBarLink-allTabsCookies"
         >
-        allTabsCookies
+        All tabs cookies
         </button>
-        <button class="tabBar__link" id="tabBarLink-savedCookies">savedKeys</button>
-        <button class="tabBar__link" id="tabBarLink-localhostKeys">localHostKeys</button>
+        <button class="tabBar__link" id="tabBarLink-savedCookies">Saved keys</button>
+        <button class="tabBar__link" id="tabBarLink-localhostKeys">LocalHost Keys</button>
       </div>
       <!-- Tab Content -->
       <section id="allTabsCookies" class="tabContent tabContent--active">
@@ -31,7 +33,7 @@
           <thead>
             <tr class="tabContent__tableHeader">
               <th class="tabContent__tableHeaderRow" style="width: 30%">Page</th>
-              <th class="tabContent__tableHeaderRow" style="width: 20%">Key</th>
+              <th class="tabContent__tableHeaderRow" style="width: 20%">Name</th>
               <th class="tabContent__tableHeaderRow" style="width: 30%">Value</th>
               <th class="tabContent__tableHeaderRow" style="width: 20%; text-align: center;">Actions</th>
             </tr>  
@@ -46,8 +48,8 @@
         <table class="tabContent__table">
           <thead>
             <tr class="tabContent__tableHeader">
-              <th class="tabContent__tableHeaderRow" style="width: 20%">Saved from</th>
-              <th class="tabContent__tableHeaderRow" style="width: 20%">Key</th>
+              <th class="tabContent__tableHeaderRow" style="width: 30%">Alias</th>
+              <th class="tabContent__tableHeaderRow" style="width: 20%">Name</th>
               <th class="tabContent__tableHeaderRow" style="width: 20%">Value</th>
               <th class="tabContent__tableHeaderRow" style="width: 20%">Created at</th>
               <th class="tabContent__tableHeaderRow" style="width: 20%; text-align: center;">Actions</th>
@@ -63,7 +65,7 @@
           <thead>
             <tr class="tabContent__tableHeader">
               <th class="tabContent__tableHeaderRow" style="width: 30%">Origin</th>
-              <th class="tabContent__tableHeaderRow" style="width: 20%">Key</th>
+              <th class="tabContent__tableHeaderRow" style="width: 20%">Name</th>
               <th class="tabContent__tableHeaderRow" style="width: 30%">Value</th>
               <th class="tabContent__tableHeaderRow" style="width: 20%; text-align: center;">Actions</th>
             </tr>  
@@ -78,20 +80,41 @@
       id="tableActions"
     >
     <div class="tabContent__actions">
-       <a id="copyToClipboard" href="#"><i class="fa-solid fa-clipboard"></i></a>
-       <a id="saveCookie" href="#"><i class="fa-solid fa-floppy-disk"></i></a>
-       <a id="putInLocalHost" href="#"><i class="fa-solid fa-house"></i></i></a>
-       <a id="deleteKey" href="#"><i class="fa-solid fa-trash"></i></i></a>
+       <a id="copyToClipboard" href="#"><i class="fa-solid fa-clipboard"></i>
+      <span class="tabContent__actions-tooltip">
+        Copy to clipboard
+      </span></a>
+       <a id="saveCookie" href="#"><i class="fa-solid fa-floppy-disk"></i>
+      
+        <span class="tabContent__actions-tooltip">
+          Save cookie
+        </span>
+      </a>
+       <a id="putInLocalHost" href="#"><i class="fa-solid fa-house"></i></i>
+        <span class="tabContent__actions-tooltip">
+          Put in localHost
+        </span>
+      </a>
+       <a id="deleteKey" href="#"><i class="fa-solid fa-trash"></i></i>
+        <span class="tabContent__actions-tooltip">
+          Delete key
+        </span>
+      </a>
     </div>
     </template>
+
+    <div class="popup" id="popup">
+        <p class="popup__message">test message</p>
+    </div>
+
     <script type="text/javascript" src="scripts/utils.js" ></script>
 
 
     <script type="text/javascript" src="scripts/utils/getAsyncStorageProp.js" ></script>
-    <script type="text/javascript" src="scripts/globals.js" async ></script>
     
     <script type="text/javascript" src="scripts/actions.js" ></script>
     <script type="text/javascript" src="scripts/chromeActions.js" async></script>
+    <script type="text/javascript" src="scripts/popup.js"></script>
     <script type="text/javascript" src="scripts/allKeysTable.js" async></script>
     <script type="text/javascript" src="scripts/savedCookies.js" async></script>
     <script type="text/javascript" src="scripts/localhost.js" async></script>

@@ -12,6 +12,20 @@ const buildLocalHostCookiesActions = (item, index) => {
       });
     }
 
+    if(action.id === 'deleteKey') {
+      action.addEventListener('click', async () => {
+        try {
+          await deleteLocalHostCookie(item);
+          await buildLocalHostCookies();
+          showPopup('Cookie deleted');
+        } catch (error) {
+          console.log(error)
+          showPopup('Failed');
+        }
+      });
+    }
+
+
     action.id = action.id + ' #' + index;
   });
 
